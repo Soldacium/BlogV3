@@ -25,6 +25,9 @@
       "@services/*": ["app/services/*"],
       "@models/*": ["app/shared/models/*"],
       "@reusable/*": ["app/shared/components/*"],
+      "@admin/*": ["app/admin/*"],
+      "@user/*": ["app/end-user/*"],
+      "@assets/*": ["assets/*"]
     }
   },
   "angularCompilerOptions": {
