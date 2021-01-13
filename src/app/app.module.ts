@@ -27,6 +27,7 @@ import { SubscribeComponent } from './shared/components/subscribe/subscribe.comp
 import { TagsComponent } from './shared/components/tags/tags.component';
 import { TriangleComponent } from './shared/components/triangle/triangle.component';
 import { BackgroundComponent } from './end-user/background/background.component';
+import { EndUserComponent } from './end-user/end-user.component';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { BackgroundComponent } from './end-user/background/background.component'
     SubscribeComponent,
     TagsComponent,
     TriangleComponent,
-    BackgroundComponent
+    BackgroundComponent,
+    EndUserComponent
   ],
   imports: [
     BrowserModule,

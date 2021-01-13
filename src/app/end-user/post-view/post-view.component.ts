@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-post',
-  templateUrl: './post.component.html',
-  styleUrls: ['./post.component.scss']
+  templateUrl: './post-view.component.html',
+  styleUrls: ['./post-view.component.scss']
 })
 export class PostViewComponent implements OnInit {
 

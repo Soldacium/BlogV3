@@ -10,23 +10,18 @@ import { AdminPostsListComponent } from './admin/admin-posts-list/admin-posts-li
 import { AdminPostMakeComponent } from './admin/admin-post-make/admin-post-make.component';
 import { NotFoundComponent } from './end-user/not-found/not-found.component';
 import { AdminComponent } from './admin/admin.component';
+import { EndUserComponent } from '@user/end-user.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: WelcomeComponent
-  },
-  {
-    path: 'posts',
-    component: PostsListComponent
-  },
-  {
-    path: 'post:id',
-    component: PostViewComponent
-  },
-  {
-    path: 'about',
-    component: AboutComponent
+    component: EndUserComponent,
+    children: [
+      { path: '', component: WelcomeComponent },
+      { path: 'posts', component: PostsListComponent},
+      { path: 'post:id', component: PostViewComponent},
+      { path: 'about', component: AboutComponent },
+    ]
   },
   {
     path: 'login',

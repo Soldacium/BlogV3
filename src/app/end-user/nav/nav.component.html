@@ -1,1 +1,35 @@
-<p>nav works!</p>
+
+<main>
+     
+    <nav>
+        <!--
+        <div class="logo" [routerLink]='["/main"]'>
+            WWW
+        </div>            
+        -->  
+        <ul class='links'>
+            
+            <li><a [routerLink]='["/"]' [ngClass]="(router.isActive('/',true))?'active':'naah'">Projects</a></li>
+            <li><a [routerLink]='["/"]' [ngClass]="(router.isActive('/posts',true))?'active':'naah'">Blog</a></li>
+            <li><a [routerLink]='["/"]' [ngClass]="(router.isActive('/posts',true))?'active':'naah'">Contact</a></li>
+            
+        </ul>
+        <div class="hamburger" (click)='navActive = !navActive'
+        [ngClass]="navActive ? 'active' : 'naah' ">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>    
+    </nav>
+</main>    
+
+
+<div class="overlay" [ngClass]="navActive ? 'visible' : 'naah'">
+    <div class="overlay-nav">
+        <ul >
+            <li><a [routerLink]='["/main"]' [ngClass]="(router.isActive('/main',true))?'active':'naah'">Home</a></li>
+            <li><a [routerLink]='["/login"]' [ngClass]="(router.isActive('/login',true))?'active':'naah'">Login</a></li>
+        </ul>
+    </div>
+</div>
