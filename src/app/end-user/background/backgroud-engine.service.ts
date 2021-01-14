@@ -5,7 +5,6 @@ import ImprovedNoise from './functions/improved-noise';
 
 @Injectable({ providedIn: 'root' })
 export class BackgroundEngineService implements OnDestroy {
-  private canvas!: HTMLCanvasElement;
   private renderer!: THREE.WebGLRenderer;
   private camera!: THREE.PerspectiveCamera;
   private scene!: THREE.Scene;
@@ -34,10 +33,15 @@ export class BackgroundEngineService implements OnDestroy {
   pGeometry!: THREE.Geometry;
   FLOOR_WIDTH = 7600;
   FLOOR_DEPTH = 4800;
-  MOVE_SPD = 1.9;
+  MOVE_SPD = 1;
 
   snoise = ImprovedNoise();
   textureLoader = new THREE.TextureLoader();
+
+  TetrahedronsArray: THREE.Mesh[] = [];
+  TETRAHEDRON_COUNT = 100;
+
+  currentScroll = 0;
 
   public constructor(private ngZone: NgZone) {}
 
@@ -61,31 +65,28 @@ export class BackgroundEngineService implements OnDestroy {
 }
 */
 
-  public createScene(canvas: ElementRef<HTMLCanvasElement>): void {
-  }
-
   init(canvas: HTMLCanvasElement): void {
    this.camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 4000);
    this.camera.position.z = 1750;
+   this.camera.rotateZ(30);
+   this.camera.rotateY(0.4);
 
    this.scene = new THREE.Scene();
-   this.scene.fog = new THREE.FogExp2(0x1c3c4a, 0.00045);
+   this.scene.fog = new THREE.FogExp2(0xb31245, 0.00045);
 
    const hemisphereLight = new THREE.HemisphereLight(0xe3feff, 0xe6ddc8, 0.7);
    this.scene.add(hemisphereLight);
    hemisphereLight.position.y = 300;
 
    // middle light
-
-
-   const light = new THREE.AmbientLight( 0x404040, 0.8 ); 
+   const light = new THREE.AmbientLight( 0x404040, 1 );
    this.scene.add( light );
 
-   this.pointLight = new THREE.PointLight(0x7bffed, 0.6);
-   this.pointLight.position.z = 200;
+   this.pointLight = new THREE.PointLight(0x4ff4ff, 0.1);
+   this.pointLight.position.z = 400;
    this.scene.add(this.pointLight);
 
-   this.pointLight2 = new THREE.PointLight(0x8000ff, 1);
+   this.pointLight2 = new THREE.PointLight(0x4ff4ff, 0.2);
    this.pointLight2.position.z = 200;
    this.scene.add(this.pointLight2);
 
@@ -105,7 +106,7 @@ export class BackgroundEngineService implements OnDestroy {
        envMap: reflectionCube,
        combine: THREE.MixOperation,
        side: THREE.DoubleSide,
-       reflectivity: 0.5,
+       reflectivity: 0.03,
        flatShading: true
    });
 
@@ -114,13 +115,12 @@ export class BackgroundEngineService implements OnDestroy {
    const floorGroup = new THREE.Object3D();
 
    const floorMaterial = new THREE.MeshBasicMaterial({
-       color: 0x000000, // diffuse
+       color: 0x000000, 
        side: THREE.DoubleSide,
        blending: THREE.AdditiveBlending,
        wireframe: true
    });
 
-   // add extra x width
    this.floorGeometry = new THREE.PlaneGeometry(this.FLOOR_WIDTH + 1200, this.FLOOR_DEPTH, this.FLOOR_RES, this.FLOOR_RES);
    const floorMesh = new THREE.Mesh(this.floorGeometry, cubeMaterial);
    const floorMesh2 = new THREE.Mesh(this.floorGeometry, floorMaterial);
@@ -134,6 +134,8 @@ export class BackgroundEngineService implements OnDestroy {
    floorMesh.rotation.x = Math.PI / 1.65;
    floorMesh2.rotation.x = Math.PI / 1.65;
    floorGroup.position.y = 180;
+
+   this.makeTetrahedrons(cubeMaterial);
 
    this.renderer = new THREE.WebGLRenderer({
         antialias: true,
@@ -151,6 +153,35 @@ export class BackgroundEngineService implements OnDestroy {
    window.addEventListener( 'resize', this.onWindowResize, false );
 
    this.renderer.setClearColor('white');
+  }
+
+  makeTetrahedrons(material: THREE.Material): void{
+    for (let i = 0; i < this.TETRAHEDRON_COUNT; i++){
+      const randX = Math.floor(Math.random() * 4000 - 1000);
+      const randY = Math.floor(Math.random() * 1500 + 500);
+
+      const doubleRand = Math.random();
+      const randZ = Math.floor(doubleRand * 4000 - 2000);
+
+      const radius = Math.floor(doubleRand * (100) + 10);
+      const tetrahedronGeometry = new THREE.TetrahedronBufferGeometry(radius, 0);
+
+      const tetrahedronMesh = new THREE.Mesh(tetrahedronGeometry, material);
+
+      tetrahedronMesh.position.set(randX, randY, randZ);
+      tetrahedronMesh.rotation.set(randX, randY, randZ);
+      this.TetrahedronsArray.push(tetrahedronMesh);
+      this.scene.add(tetrahedronMesh);
+    }
+  }
+
+  moveTetrahedrons(): void{
+    for(let i = 0; i < this.TETRAHEDRON_COUNT; i++){
+      Math.cos(this.count / i + 25)
+      this.TetrahedronsArray[i].position.y += Math.cos(this.count / (i)) * (i % 5 + 1) * 0.2;
+      this.TetrahedronsArray[i].rotation.x += (i % 3 + 1)* 0.005;
+      this.TetrahedronsArray[i].rotation.y += (i % 3 + 1)* 0.001;
+    }
   }
 
   setWaves(): void {
@@ -210,11 +241,12 @@ export class BackgroundEngineService implements OnDestroy {
     this.frameId = requestAnimationFrame(() => {
       this.render();
     });
-    this.camera.position.x += ( this.mouseX - this.camera.position.x ) * .01;
-    this.camera.position.y += ( - (this.mouseY * 0.3 ) + 600 - this.camera.position.y ) * .01;
+    this.camera.position.x += ( this.mouseX * 0.3 - this.camera.position.x + 600 ) * .01;
+    this.camera.position.y += ( - (this.mouseY * 0.3 ) + 800 - this.camera.position.y ) * .01;
     this.camera.position.z += ( - (this.mouseY * 0.3 ) + 800 - this.camera.position.z ) * .01;
 
     this.setWaves();
+    this.moveTetrahedrons();
     this.count += 0.1;
     this.renderer.render(this.scene, this.camera);
   }

@@ -24,6 +24,12 @@ textarea{
     font-family: 'Poppins', sans-serif;
 }
 
+input{
+    &:focus{
+        outline: none;
+    }
+}
+
 html{
     /*
     --header1: calc(2.4rem + 1.1vw);
