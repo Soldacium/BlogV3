@@ -17,10 +17,10 @@ const routes: Routes = [
     path: '',
     component: EndUserComponent,
     children: [
-      { path: '', component: WelcomeComponent },
-      { path: 'posts', component: PostsListComponent},
-      { path: 'post:id', component: PostViewComponent},
-      { path: 'about', component: AboutComponent },
+      { path: '', component: WelcomeComponent, data: {animation: 'WelcomePage'} },
+      { path: 'posts', component: PostsListComponent, data: {animation: 'PostsListPage'}},
+      { path: 'post:id', component: PostViewComponent, data: {animation: 'PostViewPage'}},
+      { path: 'about', component: AboutComponent, data: {animation: 'AboutPage'} },
     ]
   },
   {

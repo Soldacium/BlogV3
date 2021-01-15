@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-input',
@@ -6,6 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./input.component.scss']
 })
 export class InputComponent implements OnInit {
+
+  @Input() placeholder = '';
+  @Input() label = '';
+  @Input() type: 'text'|'number'|'email'|'password'|'datetime-local' = 'text';
+  @Input() darkMode = false;
+  @Input() textColor = 'black';
+
+  @Input() inputModel = '';
+  @Output() inputModelChange = new EventEmitter<string>();
 
   constructor() { }
 

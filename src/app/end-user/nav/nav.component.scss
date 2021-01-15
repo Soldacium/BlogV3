@@ -101,6 +101,8 @@ nav{
         &:nth-child(1),&:nth-child(4){ opacity: 0; }
         &:nth-child(3){ transform: rotate(-45deg); }
         &:nth-child(2){ transform: rotate(45deg); }
+        background: white;
+        
     }  
 }
 
@@ -109,19 +111,18 @@ nav{
 
 .overlay {
     position: fixed;
-    background: rgba(22, 22, 22, 0.973);
+    background: rgb(48, 48, 48);
     
     right: 0;
     top: 0;
     width: 0%;
     height: 100%;
     z-index: 90;
-    padding-bottom: 30%;
+    padding: 10% 15%;
 
     opacity: 0;
     visibility: hidden;
     display: flex;
-    align-items: center;
     justify-content: center;
     transition: .4s;
 
@@ -150,37 +151,70 @@ nav{
     &.visible li:nth-of-type(5){
         animation-delay:  .40s;
     }
+
+    .column {
+        flex: 1 1 20rem;
+        text-align: left;
+        position: relative;
+        margin: 2rem;
+
+        h1{
+            font-size: 3.5rem;
+            color: white;
+            position: relative;
+            margin-bottom: 1rem;
+            
+            &:after {
+                content: '';
+                display: block;
+                border-bottom: 3px solid rgb(255, 255, 255);
+                width: 0;
+                position: absolute;
+                left: 0;
+                -webkit-transition: 0.3s ease;
+                transition: 0.3s ease;
+            }
+        }
+
+        &:hover h1:after { 
+            width: 100%; 
+        }
+     
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 2rem;
+    
+            li {
+                margin: 26px 0;
+    
+                a {
+                    color: rgb(255, 255, 255);
+                    padding: 0.5rem;
+                    font-size: 1.3rem;
+                    font-weight: 600;
+                    text-decoration: none;
+                    transition: all .5s;
+                }
+
+            }
+    
+        }
+    }
+
+    .background{
+        position: absolute;
+        left: 50%;
+        top: 90%;
+        font-size: 7rem;
+        color: rgba(255, 255, 255, 0.055);
+        pointer-events: none;
+        transform: translate(-50%,-50%);
+    }
 }
 
-.overlay-nav {
-    font-size: 2rem;
-    text-align: center;
- 
-     ul {
-         list-style: none;
-         padding: 0;
-         margin: 0;
- 
-         li {
-             opacity: 0;
-             margin: 26px 0;
- 
-             a {
-                 color: rgb(255, 255, 255);
-                 padding: 10px;
-                 font-size: var(--biggestText);
-                 font-weight: 600;
-                 text-decoration: none;
-                 transition: all .5s;
-             }
- 
-             a:hover{
-                 box-shadow: white 0px 0px 12px;
-             }
-         }
- 
-     }
-}
+
 
 
 

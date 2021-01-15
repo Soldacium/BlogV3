@@ -1,1 +1,64 @@
-<p>search works!</p>
+<main>
+
+    <h1 class="title">Search</h1>
+    <section>
+        <div class="section-title">Name and ogranisator</div>
+        <div class='name'>
+            <app-input 
+            [label]="'Name'" 
+            [placeholder]="'Name'" 
+            [(inputModel)]="options.name" 
+            [type]="'text'"
+            [darkMode]='true'></app-input>
+        </div>
+    </section>
+    <section>
+        <div class="section-title">Event type</div>
+        
+        <div class="types">
+            <button class="type" *ngFor='let type of eventTypes' (click)='pickType(type)' [ngClass]="(chosenType === type?'active':'naah')">
+                <div>{{type}}</div>
+            </button>
+        </div>
+               
+    </section>
+
+    <section>
+        <div class="section-title">Tags</div>
+        <div class="tags">
+            <button class="tag" *ngFor='let tag of eventTags' (click)='pickTag(tag)' [ngClass]="(chosenTags.includes(tag)?'active':'naah')">
+                <div>{{tag}}</div>
+            </button>
+        </div>
+
+    </section>
+    <section>
+        <div class="section-title">Time</div>
+        <div class="date">
+            <div class="date-wrap">
+                <app-input 
+                [label]="'From'" 
+                [placeholder]="'From'" 
+                [(inputModel)]="options.dateMin" 
+                [type]="'datetime-local'"
+                [darkMode]='true'></app-input>
+                <app-input 
+                [label]="'To'" 
+                [placeholder]="'To'" 
+                [(inputModel)]="options.dateMax" 
+                [type]="'datetime-local'"
+                [darkMode]='true'></app-input>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class='buttons'>
+            
+            <button class='search-button' (click)='search()'><div>Search </div> <img src="assets/icons/search.svg" alt=""></button>
+            <button class='redo-button' (click)='resetSearchOptions()'><div></div> <img src="assets/icons/send.svg" alt=""></button>                 
+            
+       
+        </div>
+    </section>
+
+</main>

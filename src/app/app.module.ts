@@ -29,6 +29,9 @@ import { TriangleComponent } from './shared/components/triangle/triangle.compone
 import { BackgroundComponent } from './end-user/background/background.component';
 import { EndUserComponent } from './end-user/end-user.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -61,7 +64,9 @@ import { EndUserComponent } from './end-user/end-user.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

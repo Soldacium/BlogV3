@@ -1,1 +1,5 @@
-<p>input works!</p>
+<div class="input-box field" [ngClass]="darkMode ? 'dark':'light'">
+    <input [type]="type" class="input-field" [placeholder]="label" [name]="label" [id]='label' required 
+    [(ngModel)]="inputModel" (ngModelChange)="inputModelChange.emit(inputModel)" />
+    <label [for]="label" class="input-label">{{label}}</label>
+</div> 
