@@ -31,6 +31,7 @@ import { EndUserComponent } from './end-user/end-user.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { PostThumbnailComponent } from './shared/components/post-thumbnail/post-thumbnail.component';
 
 
 @NgModule({
@@ -60,7 +61,8 @@ import { FormsModule } from '@angular/forms';
     TagsComponent,
     TriangleComponent,
     BackgroundComponent,
-    EndUserComponent
+    EndUserComponent,
+    PostThumbnailComponent
   ],
   imports: [
     BrowserModule,

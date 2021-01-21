@@ -8,4 +8,5 @@ import { SearchOptions } from '@shared/models/search-options.model';
 })
 export class PostsListComponent {
 
+  items = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 }

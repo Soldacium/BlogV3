@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="background-img">
+        <img [src]="postImg" alt="">
+    </div>
+
+    <div class="description">
+        <div class="title">{{postTitle}}</div>
+        <div class="text">{{postDesc}}</div>
+        <app-button [text]='"View post"' (onclick)='viewPost()'></app-button>
+    </div>
+
+    <div class="background-triangle">
+        
+    </div>
+
+</div>
