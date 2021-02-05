@@ -4,13 +4,22 @@
     </div>
 
     <div class="description">
-        <div class="title">{{postTitle}}</div>
-        <div class="text">{{postDesc}}</div>
-        <app-button [text]='"View post"' (onclick)='viewPost()'></app-button>
+        <div class="content">
+            <div class="title">{{postTitle}}</div>
+            <div class="text">{{postDesc}}</div>
+
+        </div>
+
     </div>
 
+    <app-button [text]='"View post"' (onclick)='viewPost()'></app-button>
+
     <div class="background-triangle">
-        
+        <!--
+            TODO: category preview, different colors for different post types + icon
+            <img [src]="" alt="">
+        -->
+
     </div>
 
 </div>

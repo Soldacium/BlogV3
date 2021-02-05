@@ -19,7 +19,7 @@ const routes: Routes = [
     children: [
       { path: '', component: WelcomeComponent, data: {animation: 'WelcomePage'} },
       { path: 'posts', component: PostsListComponent, data: {animation: 'PostsListPage'}},
-      { path: 'post:id', component: PostViewComponent, data: {animation: 'PostViewPage'}},
+      { path: 'post/:id', component: PostViewComponent, data: {animation: 'PostViewPage'}},
       { path: 'about', component: AboutComponent, data: {animation: 'AboutPage'} },
     ]
   },

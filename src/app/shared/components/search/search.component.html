@@ -1,19 +1,22 @@
 <main>
 
     <h1 class="title">Search</h1>
-    <section>
-        <div class="section-title">Name and ogranisator</div>
+    <section class='section-one'>
+        <!--
+           <div class="section-title">Title</div> 
+        -->
+        
         <div class='name'>
             <app-input 
             [label]="'Name'" 
             [placeholder]="'Name'" 
             [(inputModel)]="options.name" 
             [type]="'text'"
-            [darkMode]='true'></app-input>
+            [darkMode]='false'></app-input>
         </div>
     </section>
-    <section>
-        <div class="section-title">Event type</div>
+    <section class='section-two'>
+        <div class="section-title">Type</div>
         
         <div class="types">
             <button class="type" *ngFor='let type of eventTypes' (click)='pickType(type)' [ngClass]="(chosenType === type?'active':'naah')">
@@ -23,7 +26,7 @@
                
     </section>
 
-    <section>
+    <section class='section-three'>
         <div class="section-title">Tags</div>
         <div class="tags">
             <button class="tag" *ngFor='let tag of eventTags' (click)='pickTag(tag)' [ngClass]="(chosenTags.includes(tag)?'active':'naah')">
@@ -32,6 +35,7 @@
         </div>
 
     </section>
+    <!--
     <section>
         <div class="section-title">Time</div>
         <div class="date">
@@ -41,24 +45,33 @@
                 [placeholder]="'From'" 
                 [(inputModel)]="options.dateMin" 
                 [type]="'datetime-local'"
-                [darkMode]='true'></app-input>
+                [darkMode]='false'></app-input>
                 <app-input 
                 [label]="'To'" 
                 [placeholder]="'To'" 
                 [(inputModel)]="options.dateMax" 
                 [type]="'datetime-local'"
-                [darkMode]='true'></app-input>
+                [darkMode]='false'></app-input>
             </div>
         </div>
-    </section>
+    </section>        
+    -->
+
     <section>
         <div class='buttons'>
             
-            <button class='search-button' (click)='search()'><div>Search </div> <img src="assets/icons/search.svg" alt=""></button>
+            <!--
             <button class='redo-button' (click)='resetSearchOptions()'><div></div> <img src="assets/icons/send.svg" alt=""></button>                 
+
+            -->
             
        
         </div>
     </section>
+
+    <button class='search-button' (click)='search()'>
+        <div>Search </div> 
+        <img src="assets/icons/search.svg" alt="">
+    </button>
 
 </main>

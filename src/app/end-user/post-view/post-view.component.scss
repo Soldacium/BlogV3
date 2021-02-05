@@ -1,0 +1,53 @@
+main{
+    width: 100%;
+    background-color: white;
+    padding: 10vh 20%;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+section{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.header{
+    margin-bottom: 2rem;
+
+    .date{
+        font-size: 1rem;
+        color: rgba(0, 0, 0, 0.5);
+        margin-bottom: 0.5rem;
+    }
+    .title{
+        font-size: 6rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: 3px solid black;
+    }
+
+}
+
+.content {
+
+    .content-section{
+        margin-top: 5rem;
+        position: relative;
+        .title{
+            font-size: 2rem;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.068);
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+        }
+
+        .content-section-inside{
+            padding: 0 1rem;
+        }
+    }
+
+}

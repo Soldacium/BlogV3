@@ -11,7 +11,7 @@ export class ButtonComponent{
   text = '';
 
   @Input()
-  img = '';
+  img = 'assets/icons/arrow.svg';
 
   @Output() onclick:
   EventEmitter<Event> = new EventEmitter<Event>();

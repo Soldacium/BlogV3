@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-thumbnail',
@@ -13,8 +14,11 @@ export class PostThumbnailComponent {
 
   @Output() buttonClick= new EventEmitter<string>();
 
-  viewPost(){
+  constructor(private router: Router){
+  }
 
+  viewPost(): void{
+    this.router.navigate(['/post/id']);
   }
 
 }
