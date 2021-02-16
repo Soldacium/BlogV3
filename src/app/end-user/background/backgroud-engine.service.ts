@@ -13,6 +13,7 @@ export class BackgroundEngineService implements OnDestroy {
   private mouseX = 100; private mouseY = 100;
   windowHalfX = window.innerWidth / 2;
   windowHalfY = window.innerHeight / 2;
+  windowScroll = window.scrollY;
   count = 0;
   RADIUS = 800;
   LINES = 300;
@@ -39,7 +40,10 @@ export class BackgroundEngineService implements OnDestroy {
   textureLoader = new THREE.TextureLoader();
 
   TetrahedronsArray: THREE.Mesh[] = [];
-  TETRAHEDRON_COUNT = 100;
+  TETRAHEDRON_COUNT = 50;
+
+  WelcomeTetrahedronsArray: THREE.Mesh[] = [];
+
 
   currentScroll = 0;
 
@@ -68,13 +72,14 @@ export class BackgroundEngineService implements OnDestroy {
   init(canvas: HTMLCanvasElement): void {
    this.camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 4000);
    this.camera.position.z = 1750;
-   this.camera.rotateZ(30);
-   this.camera.rotateY(0.4);
+   this.camera.position.y = 500;
+   this.camera.rotateZ(30.4);
+   this.camera.rotateY(0.5);
 
    this.scene = new THREE.Scene();
-   this.scene.fog = new THREE.FogExp2(0xb31245, 0.00045);
+   this.scene.fog = new THREE.FogExp2(0x66FcF1, 0.00045);
 
-   const hemisphereLight = new THREE.HemisphereLight(0xe3feff, 0xe6ddc8, 0.7);
+   const hemisphereLight = new THREE.HemisphereLight(0x66FcF1, 0x05386b, 0.7);
    this.scene.add(hemisphereLight);
    hemisphereLight.position.y = 300;
 
@@ -82,11 +87,13 @@ export class BackgroundEngineService implements OnDestroy {
    const light = new THREE.AmbientLight( 0x404040, 1 );
    this.scene.add( light );
 
-   this.pointLight = new THREE.PointLight(0x4ff4ff, 0.1);
+   this.scene.background = new THREE.Color(0x111111);
+
+   this.pointLight = new THREE.PointLight(0x5cdb95, 0.4);
    this.pointLight.position.z = 400;
    this.scene.add(this.pointLight);
 
-   this.pointLight2 = new THREE.PointLight(0x4ff4ff, 0.2);
+   this.pointLight2 = new THREE.PointLight(0x5cdb95, 0.2);
    this.pointLight2.position.z = 200;
    this.scene.add(this.pointLight2);
 
@@ -137,6 +144,8 @@ export class BackgroundEngineService implements OnDestroy {
 
    this.makeTetrahedrons(cubeMaterial);
 
+   this.makeWelcomeTetrahedrons(cubeMaterial);
+
    this.renderer = new THREE.WebGLRenderer({
         antialias: true,
         canvas,
@@ -151,6 +160,9 @@ export class BackgroundEngineService implements OnDestroy {
 
     }, false );
    window.addEventListener( 'resize', this.onWindowResize, false );
+   window.addEventListener('scroll', () => {
+    this.windowScroll = -window.scrollY;
+   })
 
    this.renderer.setClearColor('white');
   }
@@ -182,6 +194,40 @@ export class BackgroundEngineService implements OnDestroy {
       this.TetrahedronsArray[i].rotation.x += (i % 3 + 1)* 0.005;
       this.TetrahedronsArray[i].rotation.y += (i % 3 + 1)* 0.001;
     }
+  }
+
+  makeWelcomeTetrahedrons(material: THREE.Material): void{
+      const randX = 500;
+      const randY = 800;
+      const randZ = 1500;
+
+      const radius = 300;
+      const tetrahedronGeometry = new THREE.TetrahedronBufferGeometry(radius, 0);
+
+      const tetrahedronMesh = new THREE.Mesh(tetrahedronGeometry, material);
+
+      tetrahedronMesh.position.set(randX, randY, randZ);
+      tetrahedronMesh.rotation.set(randX, randY, randZ);
+      this.WelcomeTetrahedronsArray.push(tetrahedronMesh);
+      this.scene.add(tetrahedronMesh);
+  }
+
+  moveWelcomeTetrahedronsOutOfView(){
+
+  }
+
+  moveWelcomeTetrahedronsIntoView(){
+    
+  }
+
+  moveWelcomeTetrahedrons(){
+    
+    this.WelcomeTetrahedronsArray.forEach(tetrahedron => {
+      // tetrahedron.position.y += ( - (this.mouseX * 0.3 ) + 800 - this.camera.position.y ) * .005;
+      // tetrahedron.position.z += ( - (this.mouseY * 0.3 )  - this.camera.position.z + 800 ) * .01;
+      //tetrahedron.position.x += ( -(this.mouseY * 0.3) - this.camera.position.x + 800 + 1 * 0.3) * .01 ;
+    });
+
   }
 
   setWaves(): void {
@@ -241,12 +287,18 @@ export class BackgroundEngineService implements OnDestroy {
     this.frameId = requestAnimationFrame(() => {
       this.render();
     });
-    this.camera.position.x += ( this.mouseX * 0.3 - this.camera.position.x + 600 ) * .01;
-    this.camera.position.y += ( - (this.mouseY * 0.3 ) + 800 - this.camera.position.y ) * .01;
-    this.camera.position.z += ( - (this.mouseY * 0.3 ) + 800 - this.camera.position.z ) * .01;
+    // this.camera.position.x += ( this.mouseX * 0.3 - this.camera.position.x + 400 + this.windowScroll * 0.3) * .01 ;
+    // this.camera.position.y += ( - (this.mouseY * 0.3 ) + 800 - this.camera.position.y ) * .01;
+    // this.camera.position.z += ( - (this.mouseY * 0.3 ) + 800 - this.camera.position.z ) * .01;
+ 
+    this.camera.position.x += ( - this.mouseY * 0.3 - this.camera.position.x + 400 + this.windowScroll * 0.3) * .01 ;/* 
+    this.camera.position.y += ( - (this.mouseX * 0.3 ) + 800 - this.camera.position.y ) * .01;
+    this.camera.position.z += ( - (this.mouseY * 0.3 ) + 800 - this.camera.position.z ) * .01; 
+ */
 
     this.setWaves();
     this.moveTetrahedrons();
+    this.moveWelcomeTetrahedrons();
     this.count += 0.1;
     this.renderer.render(this.scene, this.camera);
   }

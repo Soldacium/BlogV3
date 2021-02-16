@@ -1,6 +1,6 @@
 main{
     width: 100vw;
-    padding: 10vh 18vw;
+    padding: 0vh 0;
     background-color: rgba(255, 255, 255, 0.048);
 }
 
@@ -12,7 +12,7 @@ section{
     display: flex;
 
     app-search{
-        box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.089);
+        // box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.089);
         border-radius: 1rem;
         z-index: 400;
     }
@@ -22,7 +22,7 @@ section{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 4rem 0;
+    padding: 6rem 18vw;
 
     app-post-thumbnail{
         height: 25rem;
@@ -35,9 +35,6 @@ section{
         &:hover{
             z-index: 1000;
             transform: scale(1.05);
-        }
-
-        &:nth-of-type(1n){
         }
 
         &:nth-of-type(2n){

@@ -10,6 +10,7 @@ export class AnimationService {
 
   mainTriangleEmitter = new EventEmitter();
   aboutTriangleEmitter = new EventEmitter();
+  scrollEmitter = new EventEmitter();
 
   showMainTriangles(){
     this.mainTriangleEmitter.emit('ee');
@@ -24,6 +25,10 @@ export class AnimationService {
   }
 
   hideAboutTriangles(){
+
+  }
+
+  scrollPerspective(scroll: number){
 
   }
 }
