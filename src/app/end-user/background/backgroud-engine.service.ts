@@ -40,7 +40,7 @@ export class BackgroundEngineService implements OnDestroy {
   textureLoader = new THREE.TextureLoader();
 
   TetrahedronsArray: THREE.Mesh[] = [];
-  TETRAHEDRON_COUNT = 50;
+  TETRAHEDRON_COUNT = 40;
 
   WelcomeTetrahedronsArray: THREE.Mesh[] = [];
 
@@ -71,8 +71,8 @@ export class BackgroundEngineService implements OnDestroy {
 
   init(canvas: HTMLCanvasElement): void {
    this.camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 4000);
-   this.camera.position.z = 1750;
-   this.camera.position.y = 500;
+   this.camera.position.z = 2000;
+   this.camera.position.y = 1700;
    this.camera.rotateZ(30.4);
    this.camera.rotateY(0.5);
 
@@ -169,13 +169,13 @@ export class BackgroundEngineService implements OnDestroy {
 
   makeTetrahedrons(material: THREE.Material): void{
     for (let i = 0; i < this.TETRAHEDRON_COUNT; i++){
-      const randX = Math.floor(Math.random() * 4000 - 1000);
-      const randY = Math.floor(Math.random() * 1500 + 500);
+      const randX = Math.floor(Math.random() * 6000 - 3000);
+      const randY = Math.floor(Math.random() * 4500 + 500);
 
       const doubleRand = Math.random();
       const randZ = Math.floor(doubleRand * 4000 - 2000);
 
-      const radius = Math.floor(doubleRand * (100) + 10);
+      const radius = Math.floor(doubleRand * (60) + 10);
       const tetrahedronGeometry = new THREE.TetrahedronBufferGeometry(radius, 0);
 
       const tetrahedronMesh = new THREE.Mesh(tetrahedronGeometry, material);
