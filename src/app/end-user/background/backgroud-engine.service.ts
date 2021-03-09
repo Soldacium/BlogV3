@@ -34,7 +34,7 @@ export class BackgroundEngineService implements OnDestroy {
   pGeometry!: THREE.Geometry;
   FLOOR_WIDTH = 7600;
   FLOOR_DEPTH = 4800;
-  MOVE_SPD = 1;
+  MOVE_SPD = 0.5;
 
   snoise = ImprovedNoise();
   textureLoader = new THREE.TextureLoader();
@@ -77,9 +77,9 @@ export class BackgroundEngineService implements OnDestroy {
    this.camera.rotateY(0.5);
 
    this.scene = new THREE.Scene();
-   this.scene.fog = new THREE.FogExp2(0x66FcF1, 0.00045);
+   this.scene.fog = new THREE.FogExp2(0xadfff8, 0.00045);
 
-   const hemisphereLight = new THREE.HemisphereLight(0x66FcF1, 0x05386b, 0.7);
+   const hemisphereLight = new THREE.HemisphereLight(0xadfff8, 0x05386b, 0.7);
    this.scene.add(hemisphereLight);
    hemisphereLight.position.y = 300;
 
@@ -87,13 +87,13 @@ export class BackgroundEngineService implements OnDestroy {
    const light = new THREE.AmbientLight( 0x404040, 1 );
    this.scene.add( light );
 
-   this.scene.background = new THREE.Color(0x111111);
+   this.scene.background = new THREE.Color(0xFFFFFF);
 
-   this.pointLight = new THREE.PointLight(0x5cdb95, 0.4);
+   this.pointLight = new THREE.PointLight(0xFFFFFF, 0.4);
    this.pointLight.position.z = 400;
    this.scene.add(this.pointLight);
 
-   this.pointLight2 = new THREE.PointLight(0x5cdb95, 0.2);
+   this.pointLight2 = new THREE.PointLight(0xFFFFFF, 0.2);
    this.pointLight2.position.z = 200;
    this.scene.add(this.pointLight2);
 

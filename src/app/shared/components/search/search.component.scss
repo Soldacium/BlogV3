@@ -35,7 +35,8 @@ main{
             top: 0;
             content: '';
             height: 0;
-            background: linear-gradient(180deg, rgba(48,48,48,1) 0%, rgba(36,36,36,1) 27%, rgba(0,0,0,1) 100%);
+            //background: linear-gradient(180deg, rgba(48,48,48,1) 0%, rgba(36,36,36,1) 27%, rgba(0,0,0,1) 100%);
+            background-color: white;
             animation: stripeAnimation 0.8s ease forwards;
             max-height: calc(96%);
             // border-radius: 0 0 0.2rem 0.2rem;

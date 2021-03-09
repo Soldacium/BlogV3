@@ -6,7 +6,7 @@
     <section class="posts">
         <app-post-thumbnail 
         *ngFor='let item of items' 
-        [postImg]='"assets/images/temp/temp1.jpg"'
+        [postImg]='"assets/images/temp/code.jpg"'
         [postTitle] = "'Post title 1: how to maeke blog'"
         [postDesc] = "'Damn blogs are actually so easy to make, wtf are you talkien about bruv'"
         (mouseenter)='blur = true' 
@@ -14,9 +14,12 @@
         </app-post-thumbnail>
     </section>
 
+    <!--
     <div class="posts-blur" [ngClass]="blur ? 'active':'naah'">
 
-    </div>
+    </div>        
+    -->
+
 
 
 </main>

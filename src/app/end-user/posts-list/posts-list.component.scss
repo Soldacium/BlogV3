@@ -26,19 +26,14 @@ section{
 
     app-post-thumbnail{
         height: 25rem;
-        flex: 1 1 25rem;
-        margin: 2rem 0;
+        flex: 1 1 30rem;
         z-index: 400;
         transition: transform 0.3s ease;
-        box-shadow: 0 2px 3px 2px rgba(0, 0, 0, 0.123);
+        // box-shadow: 0 2px 3px 2px rgba(0, 0, 0, 0.123);
 
         &:hover{
             z-index: 1000;
-            transform: scale(1.05);
-        }
-
-        &:nth-of-type(2n){
-            margin-left: 4rem;
+            // transform: scale(1.05);
         }
     }
 }
